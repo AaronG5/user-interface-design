@@ -1,0 +1,97 @@
+body {
+   background-color: #86a7bd;
+   color: #2f1605;
+   margin-top: 0;
+   margin-bottom: 0;
+   margin: 0;
+   font-family: "Asimovian";
+}
+
+main {
+   margin-left: 10px;
+   margin-right: 10px;
+}
+
+@font-face {
+   font-family: "Rozza Regular";
+   src: url("res/fonts/rozza.woff");
+}
+
+.asimovian-regular {
+   font-family: "Asimovian", sans-serif;
+   font-weight: 400;
+   font-style: normal;
+}
+
+.nav-links {
+   display: flex;
+   padding: 0;
+   margin: 0;
+   list-style: none;
+   overflow: hidden;
+}
+
+.nav-links li {
+   flex: 1;
+   text-align: center;
+}
+
+.nav-links a {
+   display: block;
+   padding: 15px 25px;
+   background-color: #3b2415;
+   color: #f5e9d3;
+   text-decoration: none;
+   border-radius: 0;
+   transition: 0.3s;
+}
+.nav-links li:not(:last-child) a {
+   border-right: 2px solid #a66c47;
+}
+
+.nav-links a:hover {
+   background-color: #efe2cb;
+   color: #2b1b12;
+   transform: scale(1.1);
+}
+
+@media (max-width: 600px) {
+   .nav-links {
+      flex-direction: column;
+      gap: 10px;
+   }
+}
+
+.hero {
+   height: 200px;
+   font-size: 1.5vw;
+
+   background-image: url("res/images/Vintage\ ribbon.png");
+   background-size: contain;
+   background-position: center;
+   background-repeat: no-repeat;
+
+   /* background-color: #a1bbc6; */
+
+   font-family: Impact, sans-serif;
+   padding: 100px, 10px;
+   margin: 0;
+   text-align: center;
+}
+
+.hero h1 {
+   padding-top: 90px;
+}
+
+.contact {
+   margin-bottom: 10px;
+}
+
+footer {
+   background-color: #efe2cb;
+   height: 50px;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
