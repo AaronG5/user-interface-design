@@ -1,3 +1,11 @@
+@font-face {
+   font-family: "Asimovian";
+   font-weight: 400;
+   font-style: normal;
+   font-display: swap;
+   src: url(res/fonts/Asimovian/Asimovian-Regular.ttf);
+}
+
 body {
    background-color: #86a7bd;
    color: #2f1605;
@@ -7,20 +15,11 @@ body {
    font-family: "Asimovian";
 }
 
-main {
-   margin-left: 10px;
-   margin-right: 10px;
-}
-
-@font-face {
-   font-family: "Rozza Regular";
-   src: url("res/fonts/rozza.woff");
-}
-
-.asimovian-regular {
-   font-family: "Asimovian", sans-serif;
-   font-weight: 400;
-   font-style: normal;
+section h2 {
+   margin-top: 3rem;
+   margin-bottom: 1rem;
+   border-bottom: 2px solid #2f1605;
+   font-size: 2rem;
 }
 
 .nav-links {
@@ -29,6 +28,7 @@ main {
    margin: 0;
    list-style: none;
    overflow: hidden;
+   font-size: 1.5rem;
 }
 
 .nav-links li {
@@ -38,15 +38,15 @@ main {
 
 .nav-links a {
    display: block;
-   padding: 15px 25px;
+   padding: 1rem 2rem;
    background-color: #3b2415;
    color: #f5e9d3;
    text-decoration: none;
    border-radius: 0;
-   transition: 0.3s;
+   transition: 0.3s ease;
 }
 .nav-links li:not(:last-child) a {
-   border-right: 2px solid #a66c47;
+   border-right: 2px solid #8d6953;
 }
 
 .nav-links a:hover {
@@ -55,43 +55,163 @@ main {
    transform: scale(1.1);
 }
 
-@media (max-width: 600px) {
-   .nav-links {
-      flex-direction: column;
-      gap: 10px;
-   }
+main {
+   margin-left: 2%;
+   margin-right: 2%;
 }
 
 .hero {
-   height: 200px;
-   font-size: 1.5vw;
+   aspect-ratio: 5.6;
 
-   background-image: url("res/images/Vintage\ ribbon.png");
-   background-size: contain;
+   background-image: url("res/images/Vintage_ribbon.png");
+   background-size: 100% 100%;
    background-position: center;
    background-repeat: no-repeat;
 
-   /* background-color: #a1bbc6; */
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
 
    font-family: Impact, sans-serif;
-   padding: 100px, 10px;
-   margin: 0;
+   font-size: 1.2vw;
    text-align: center;
+   margin: 0;
+   padding: 0;
 }
 
 .hero h1 {
-   padding-top: 90px;
+   font-size: 3em;
+   margin-bottom: 0;
+}
+.hero p {
+   font-size: 1em;
+   margin: 0;
 }
 
-.contact {
-   margin-bottom: 10px;
+.beer-list h1 {
+   margin-top: 3rem;
+   margin-bottom: 1rem;
+   border-bottom: 2px solid #2f1605;
+}
+
+.beer-grid {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 1.5rem;
+   padding: 1rem 0;
+}
+
+.beer-tile {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   aspect-ratio: 1 / 1;
+   border-radius: 0.5rem;
+   overflow: hidden;
+   text-decoration: none;
+   color: #efe2cb;
+   transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+}
+
+.beer-tile:hover,
+.beer-tile:focus-visible {
+   transform: scale(1.04);
+   box-shadow: 0 8px 20px #00000040;
+}
+
+.beer-tile-img {
+   max-width: 55%;
+   max-height: 70%;
+   object-fit: contain;
+   transition: transform 0.3s ease;
+}
+
+.beer-tile:hover .beer-tile-img {
+   transform: scale(1.08);
+}
+
+.beer-tile-label {
+   position: absolute;
+   bottom: 1rem;
+   left: 0;
+   right: 0;
+   text-align: center;
+   font-weight: 700;
+   text-transform: uppercase;
+   letter-spacing: 0.05rem;
+}
+
+.bg-kanopa {
+   background: linear-gradient(135deg, #e0972b, #a5621a);
+   color: #2f1605;
+}
+.bg-blue-moon {
+   background: linear-gradient(135deg, #3a2a20, #1a1210);
+}
+.bg-coors {
+   background: linear-gradient(135deg, #f2d477, #c9a13a);
+   color: #2f1605;
+}
+
+.beer-full {
+   display: flex;
+   align-items: center;
+   gap: 2rem;
+   margin-bottom: 2rem;
+}
+
+.beer-full img {
+   flex: 0 0 40%;
+   max-width: 40%;
+   height: auto;
+   border-radius: 0.5rem;
+}
+
+.beer-full-text {
+   flex: 1;
+}
+.beer-full-text h3 {
+   margin-top: 0;
 }
 
 footer {
+   margin-top: 3rem;
    background-color: #efe2cb;
-   height: 50px;
+   min-height: 4rem;
 
    display: flex;
    justify-content: center;
    align-items: center;
+}
+
+@media (max-width: 750px) {
+   .nav-links {
+      flex-direction: column;
+   }
+   .nav-links li:not(:last-child) a {
+      border-bottom: 2px solid #8d6953;
+   }
+
+   .beer-grid {
+      grid-template-columns: repeat(2, 1fr);
+   }
+
+   .beer-full,
+   .beer-full:nth-of-type(even) {
+      flex-direction: column;
+   }
+   .beer-full img {
+      flex: none;
+      max-width: 100%;
+   }
+}
+
+@media (max-width: 480px) {
+   .beer-grid {
+      grid-template-columns: 1fr;
+   }
 }
