@@ -13,6 +13,21 @@ body {
    margin-bottom: 0;
    margin: 0;
    font-family: "Asimovian";
+
+   background-image:
+      url("res/images/clouds/cloud_1.png"),
+      url("res/images/clouds/cloud_2.png"),
+      url("res/images/clouds/cloud_3.png"),
+      url("res/images/clouds/cloud_4.png"), url("res/images/clouds/cloud_5.png");
+
+   background-repeat: no-repeat;
+   background-position:
+      3% 5%,
+      95% 12%,
+      60% 38%,
+      90% 55%,
+      5% 78%;
+   background-size: 28vw, 26vw, 25vw, 37vw, 19vw;
 }
 
 section h2 {
@@ -169,12 +184,18 @@ main {
    max-width: 40%;
    height: auto;
    border-radius: 0.5rem;
+   border: 5px solid #2b1b12;
+}
+
+.beer-full:nth-of-type(even) {
+   flex-direction: row-reverse;
 }
 
 .beer-full-text {
    flex: 1;
 }
 .beer-full-text h3 {
+   font-size: 1.5rem;
    margin-top: 0;
 }
 
