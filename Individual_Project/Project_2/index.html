@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Pixel calculator</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         rel="stylesheet"
+         href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=block"
+      />
+      <link rel="stylesheet" href="index.css" />
+      <link rel="preload" as="image" href="assets/Blue_button_pressed.png" />
+      <link rel="preload" as="image" href="assets/Orange_button_pressed.png" />
+   </head>
+   <body>
+      <main class="calculator">
+         <div class="screen">
+            <div class="display">
+               <div class="display-expression" id="expression">12+7×3</div>
+               <div class="display-result" id="result">33</div>
+            </div>
+            <div class="guy"></div>
+         </div>
+
+         <div class="keys">
+            <!-- Row 1 -->
+            <button class="button button-orange" data-key="sin">sin</button>
+            <button class="button button-orange" data-key="(">(</button>
+            <button class="button button-orange" data-key=")">)</button>
+            <button class="button button-orange" data-key="clear">C</button>
+            <button class="button button-orange" data-key="backspace">
+               DEL
+            </button>
+            <!-- Row 2 -->
+            <button class="button button-blue" data-key="7">7</button>
+            <button class="button button-blue" data-key="8">8</button>
+            <button class="button button-blue" data-key="9">9</button>
+            <button class="button button-orange" data-key="/">÷</button>
+            <button class="button button-orange" data-key="root">
+               <sup>y</sup>√x
+            </button>
+            <!-- Row 3 -->
+            <button class="button button-blue" data-key="4">4</button>
+            <button class="button button-blue" data-key="5">5</button>
+            <button class="button button-blue" data-key="6">6</button>
+            <button class="button button-orange" data-key="*">×</button>
+            <button class="button button-orange" data-key="sqrt">√x</button>
+            <!-- Row 4 -->
+            <button class="button button-blue" data-key="1">1</button>
+            <button class="button button-blue" data-key="2">2</button>
+            <button class="button button-blue" data-key="3">3</button>
+            <button class="button button-orange" data-key="-">−</button>
+            <button class="button button-orange" data-key="pow">
+               x<sup>y</sup>
+            </button>
+            <!-- Row 5 -->
+            <button class="button button-blue" data-key="0">0</button>
+            <button class="button button-blue" data-key=".">,</button>
+            <button class="button button-orange" data-key="=">=</button>
+            <button class="button button-orange" data-key="+">+</button>
+            <button class="button button-orange" data-key="square">
+               x<sup>2</sup>
+            </button>
+         </div>
+      </main>
+      <script type="module" src="main.js"></script>
+   </body>
+</html>

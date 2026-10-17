@@ -1,0 +1,210 @@
+/*
+   The sprites are pixel art drawn on a 6px grid (one "art pixel" = 6 image px).
+   Everything is laid out in art pixels.
+
+   Layout in art pixels (77 x 90):
+   - border/padding: 4 top, 3 left, 3 right, 8 bottom (4 + the 4 px base shadow)
+   - screen row: display 51 x 16, gap 2, guy 16 x 16
+   - keys: 5 x 5 buttons of 11 x 10, gap 2
+*/
+
+:root {
+   --calc-w: 77;
+   --calc-h: 90;
+
+   /* Size of one art pixel: as big as fits in the window (with a small margin) */
+   --u: min(calc(94dvh / var(--calc-h)), calc(94vw / var(--calc-w)));
+
+   --bg: #e6c989;
+   --text-on-blue: #f4ead8;
+   --text-on-orange: #062328;
+   --lcd-ink: #1d2a26;
+   --lcd-ghost: rgba(29, 42, 38, 0.12);
+}
+
+* {
+   box-sizing: border-box;
+}
+
+body {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: 100dvh;
+   margin: 0;
+   background-color: var(--bg);
+   font-family: "Press Start 2P", monospace;
+   overflow: hidden;
+}
+
+.calculator {
+   width: calc(var(--calc-w) * var(--u));
+   height: calc(var(--calc-h) * var(--u));
+
+   padding-top: calc(4 * var(--u));
+
+   display: flex;
+   flex-direction: column;
+   gap: calc(3 * var(--u));
+
+   background: url("assets/Body.png") center / 100% 100% no-repeat;
+   image-rendering: pixelated;
+}
+
+/* ---------- Screen row ---------- */
+
+.screen {
+   display: flex;
+   justify-content: center;
+   gap: calc(2 * var(--u));
+   height: calc(16 * var(--u));
+}
+
+.display {
+   width: calc(51 * var(--u));
+   height: 100%;
+   background: url("assets/Display.png") center / 100% 100% no-repeat;
+   image-rendering: pixelated;
+
+   padding: calc(3 * var(--u)) calc(3 * var(--u)) calc(2.5 * var(--u));
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: flex-end;
+   overflow: hidden;
+
+   color: var(--lcd-ink);
+   white-space: nowrap;
+}
+
+.display-expression {
+   font-size: calc(2.5 * var(--u));
+   line-height: 1;
+   opacity: 0.7;
+   max-width: 100%;
+   overflow: hidden;
+   direction: rtl; /* keeps the newest characters visible when the text is too long */
+}
+
+.display-result {
+   font-size: calc(5 * var(--u));
+   line-height: 1;
+   max-width: 100%;
+   overflow: hidden;
+   direction: rtl;
+}
+
+.guy {
+   position: relative;
+   width: calc(16 * var(--u));
+   height: 100%;
+   background: url("assets/guy_screen.png") center / 100% 100% no-repeat;
+   image-rendering: pixelated;
+}
+
+.guy:before {
+   content: "";
+   position: absolute;
+   inset: 0;
+   transform: scale(0.9, 0.9);
+   background: url("assets/guy1.png") center / 100% 100% no-repeat;
+   image-rendering: pixelated;
+   transform-origin: 50% 100%;
+   translate: 0 calc(-1 * var(--u));
+   animation: breathe 2s ease-in-out infinite;
+   /* animation:
+      breathe 2s ease-in-out infinite,
+      guy-idle 1s steps(1) infinite; */
+   /* animation: guy-idle 1s steps(1) infinite; */
+}
+
+@keyframes breathe {
+   0%,
+   100% {
+      transform: scale(0.9, 0.84);
+   }
+   50% {
+      transform: scale(0.86, 0.9);
+   }
+}
+
+@keyframes guy-idle {
+   0% {
+      background-image: url("assets/guy1.png");
+   }
+   33% {
+      background-image: url("assets/guy2.png");
+   }
+   66% {
+      background-image: url("assets/guy3.png");
+   }
+}
+
+/* ---------- Keys ---------- */
+
+.keys {
+   display: grid;
+   justify-content: center;
+   grid-template-columns: repeat(5, calc(11 * var(--u)));
+   grid-template-rows: repeat(5, calc(10 * var(--u)));
+   gap: calc(2 * var(--u));
+}
+
+.button {
+   border: none;
+   margin: 0;
+   padding: 0;
+   background-color: transparent;
+   background-position: center;
+   background-size: 100% 100%;
+   background-repeat: no-repeat;
+   image-rendering: pixelated;
+   cursor: pointer;
+   -webkit-tap-highlight-color: transparent; /* Remove blue/grey flicker on press on phone */
+   user-select: none; /* Disable text selection */
+   touch-action: manipulation;
+
+   font-family: inherit;
+   font-size: calc(3 * var(--u));
+   line-height: 1;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding-bottom: calc(1 * var(--u));
+}
+
+.button sup {
+   font-size: 0.6em;
+   position: relative;
+   top: -0.6em;
+}
+
+.button-blue {
+   background-image: url("assets/Blue_button.png");
+   color: var(--text-on-blue);
+}
+.button-blue:active,
+.button-blue.pressed {
+   background-image: url("assets/Blue_button_pressed.png");
+}
+
+.button-orange {
+   background-image: url("assets/Orange_button.png");
+   color: var(--text-on-orange);
+}
+.button-orange:active,
+.button-orange.pressed {
+   background-image: url("assets/Orange_button_pressed.png");
+}
+
+.button:active,
+.button.pressed {
+   padding-bottom: 0;
+   transform: translateY(calc(0.5 * var(--u)));
+}
+
+.button:focus-visible {
+   outline: calc(0.5 * var(--u)) solid var(--text-on-blue);
+   outline-offset: calc(0.5 * var(--u));
+}
