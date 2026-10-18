@@ -1,18 +1,7 @@
-/*
-   The sprites are pixel art drawn on a 6px grid (one "art pixel" = 6 image px).
-   Everything is laid out in art pixels.
-
-   Layout in art pixels (77 x 90):
-   - border/padding: 4 top, 3 left, 3 right, 8 bottom (4 + the 4 px base shadow)
-   - screen row: display 51 x 16, gap 2, guy 16 x 16
-   - keys: 5 x 5 buttons of 11 x 10, gap 2
-*/
-
 :root {
    --calc-w: 77;
    --calc-h: 90;
 
-   /* Size of one art pixel: as big as fits in the window (with a small margin) */
    --u: min(calc(94dvh / var(--calc-h)), calc(94vw / var(--calc-w)));
 
    --bg: #e6c989;
@@ -81,17 +70,11 @@ body {
    font-size: calc(2.5 * var(--u));
    line-height: 1;
    opacity: 0.7;
-   max-width: 100%;
-   overflow: hidden;
-   direction: rtl; /* keeps the newest characters visible when the text is too long */
 }
 
 .display-result {
    font-size: calc(5 * var(--u));
    line-height: 1;
-   max-width: 100%;
-   overflow: hidden;
-   direction: rtl;
 }
 
 .guy {
@@ -112,10 +95,12 @@ body {
    transform-origin: 50% 100%;
    translate: 0 calc(-1 * var(--u));
    animation: breathe 2s ease-in-out infinite;
-   /* animation:
+}
+
+.guy.freakout::before {
+   animation:
       breathe 2s ease-in-out infinite,
-      guy-idle 1s steps(1) infinite; */
-   /* animation: guy-idle 1s steps(1) infinite; */
+      freakout 0.4s steps(1) 4;
 }
 
 @keyframes breathe {
@@ -128,7 +113,7 @@ body {
    }
 }
 
-@keyframes guy-idle {
+@keyframes freakout {
    0% {
       background-image: url("assets/guy1.png");
    }
