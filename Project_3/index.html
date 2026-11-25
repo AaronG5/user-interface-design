@@ -176,5 +176,49 @@
             />
          </div>
       </fieldset>
+
+      <fieldset>
+         <legend>Darbo patirtis</legend>
+         <label class="option-label">
+            <input
+               class="option-input"
+               type="radio"
+               name="turi_darbo_patirties"
+               value="taip"
+               required
+            />
+            <span class="dot"></span>
+            Turiu darbo patirties
+         </label>
+         <label class="option-label">
+            <input class="option-input" type="radio" name="turi_darbo_patirties" value="ne" />
+            <span class="dot"></span>
+            Neturiu darbo patirties
+         </label>
+
+         <!-- Shown only when "Turiu darbo patirties" is selected -->
+         <div class="subgroup" id="darbo_patirtis_group" hidden>
+            <label for="darbo_patirtis">Darbo patirtis (metai)</label>
+            <input id="darbo_patirtis" name="darbo_patirtis" type="number" min="0" />
+
+            <label for="darbo_sritis">Darbo sritis</label>
+            <select id="darbo_sritis" name="darbo_sritis">
+               <option value="" selected>Pasirinkite...</option>
+               <option value="teise">Teisė</option>
+               <option value="viesasis_sektorius">Viešasis sektorius</option>
+               <option value="sveikatos_apsauga">Sveikatos apsauga</option>
+               <option value="farmacija">Farmacija</option>
+               <option value="pramone">Pramonė / gamyba</option>
+               <option value="it">IT</option>
+               <option value="prekyba">Prekyba</option>
+               <option value="krasto_apsauga">Krašto apsauga</option>
+               <option value="vidaus_reikalai">Vidaus reikalų sistema</option>
+               <option value="klientu_aptarnavimas">Klientų aptarnavimas ir paslaugos</option>
+               <option value="transportas">Transportas</option>
+               <option value="kultura_pramogos">Kultūra ir pramogos</option>
+               <option value="svietimas_studijos">Švietimas / studijos</option>
+            </select>
+         </div>
+      </fieldset>
    </body>
 </html>

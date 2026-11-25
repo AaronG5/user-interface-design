@@ -146,3 +146,27 @@ function updateJobStatusFields() {
 
 jobStatusSelect.addEventListener("change", updateJobStatusFields);
 updateJobStatusFields();
+
+// DARBO PATIRTIS
+
+const experienceRadios = document.querySelectorAll(
+   'input[name="turi_darbo_patirties"]',
+);
+const experienceGroup = document.getElementById("darbo_patirtis_group");
+
+function updateExperienceFields() {
+   const checked = document.querySelector(
+      'input[name="turi_darbo_patirties"]:checked',
+   );
+   const hasExperience = checked !== null && checked.value === "taip";
+
+   experienceGroup.hidden = !hasExperience;
+   for (const field of experienceGroup.querySelectorAll("input, select")) {
+      field.disabled = !hasExperience;
+   }
+}
+
+for (const radio of experienceRadios) {
+   radio.addEventListener("change", updateExperienceFields);
+}
+updateExperienceFields();
