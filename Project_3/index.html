@@ -97,5 +97,26 @@
          <label for="adresas">Gyvenamoji vieta (adresas)</label>
          <input id="adresas" name="adresas" type="text" required />
       </fieldset>
+
+      <!-- Shown only when the person is 18 or older -->
+      <fieldset id="vedybine_fieldset" hidden disabled>
+         <legend>Vedybinė padėtis</legend>
+         <label for="vedybine">Vedybinė padėtis</label>
+         <select id="vedybine" name="vedybine">
+            <option value="" selected>Pasirinkite...</option>
+            <option value="nevedes">Nevedęs / Netekėjusi</option>
+            <option value="vedes">Vedęs / Ištekėjusi</option>
+            <option value="issiskyres">Išsiskyręs(-usi)</option>
+         </select>
+
+         <!-- Shown only when "Vedęs / Ištekėjusi" is selected -->
+         <div class="subgroup" id="sutuoktinis_group" hidden>
+            <label for="sutuoktinis_vardas">Sutuoktinis(-ė) vardas</label>
+            <input id="sutuoktinis_vardas" name="sutuoktinis_vardas" type="text" disabled />
+
+            <label for="sutuoktinis_pavarde">Sutuoktinis(-ė) pavardė</label>
+            <input id="sutuoktinis_pavarde" name="sutuoktinis_pavarde" type="text" disabled />
+         </div>
+      </fieldset>
    </body>
 </html>
