@@ -20,11 +20,13 @@ fieldset.invalid-required {
 
 /* Text fields: label on its own line, input below it */
 label[for],
-input:not([type="radio"], [type="checkbox"]) {
+input:not([type="radio"], [type="checkbox"]),
+select {
    display: block;
 }
 
-input:not([type="radio"], [type="checkbox"]) {
+input:not([type="radio"], [type="checkbox"]),
+select {
    width: 100%;
    box-sizing: border-box;
    margin-bottom: 0.75rem;

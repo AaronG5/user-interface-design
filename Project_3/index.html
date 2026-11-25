@@ -5,36 +5,22 @@
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <title>Anketos forma</title>
       <link rel="stylesheet" href="index.css" />
+      <script src="main.js" defer></script>
    </head>
 
    <body>
-      <form
-         id="personal-data-form"
-         action="#"
-         method="post"
-         enctype="multipart/form-data"
-      ></form>
+      <form id="personal-data-form" action="#" method="post" enctype="multipart/form-data"></form>
 
       <fieldset>
          <legend>Lytis</legend>
-         <label class="option-label"
-            ><input
-               class="option-input"
-               type="radio"
-               name="lytis"
-               value="vyras"
-               required
-            />Vyras</label
-         >
-         <label class="option-label"
-            ><input
-               class="option-input"
-               type="radio"
-               name="lytis"
-               value="moteris"
-               required
-            />Moteris</label
-         >
+         <label class="option-label">
+            <input class="option-input" type="radio" name="lytis" value="vyras" required />
+            Vyras
+         </label>
+         <label class="option-label">
+            <input class="option-input" type="radio" name="lytis" value="moteris" required />
+            Moteris
+         </label>
       </fieldset>
 
       <fieldset>
@@ -63,6 +49,41 @@
          />
          <label for="asmens_kodas">Asmens kodas</label>
          <input id="asmens_kodas" name="asmens_kodas" type="text" required />
+      </fieldset>
+
+      <fieldset>
+         <legend>Išsilavinimas</legend>
+         <label for="issilavinimas">Išsilavinimo lygis</label>
+         <select id="issilavinimas" name="issilavinimas" required>
+            <option value="" disabled selected>Pasirinkite...</option>
+            <option value="pagrindinis">Pagrindinis</option>
+            <option value="vidurinis">Vidurinis</option>
+            <option value="profesinis">Profesinis</option>
+            <option value="aukstasis_kolegijinis">Aukštasis - kolegijinis</option>
+            <option value="aukstasis_universitetinis">Aukštasis - universitetinis</option>
+         </select>
+
+         <div class="subgroup">
+            <label for="paskutine_istaiga">Paskutinė baigta mokslo / studijų įstaiga</label>
+            <input id="paskutine_istaiga" name="paskutine_istaiga" type="text" />
+
+            <label for="baigimo_metai">Baigimo metai</label>
+            <input id="baigimo_metai" name="baigimo_metai" type="number" min="1900" max="2050" />
+
+            <!-- Shown when the level gives a qualification -->
+            <div id="kvalifikacija_group" hidden>
+               <label for="kvalifikacija">Kvalifikacija (specialybės pavadinimas)</label>
+               <input id="kvalifikacija" name="kvalifikacija" type="text" disabled />
+            </div>
+
+            <!-- Shown and filled when the level gives a degree -->
+            <div id="mokslo_laipsnis_group" hidden>
+               <label for="mokslo_laipsnis">Mokslo laipsnis</label>
+               <select id="mokslo_laipsnis" name="mokslo_laipsnis" required disabled>
+                  <option value="" disabled selected>Pasirinkite...</option>
+               </select>
+            </div>
+         </div>
       </fieldset>
    </body>
 </html>
