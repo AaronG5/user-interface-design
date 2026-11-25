@@ -118,5 +118,63 @@
             <input id="sutuoktinis_pavarde" name="sutuoktinis_pavarde" type="text" disabled />
          </div>
       </fieldset>
+
+      <fieldset>
+         <legend>Profesinė padėtis</legend>
+         <label for="prof_padetis">Profesinė padėtis</label>
+         <select id="prof_padetis" name="prof_padetis" required>
+            <option value="" disabled selected>Pasirinkite...</option>
+            <option value="studijuoja">Studijuoja</option>
+            <option value="dirba">Dirba</option>
+            <option value="nedirba">Nedirba</option>
+            <option value="atostogos">Motinystės / tėvystės atostogose</option>
+         </select>
+
+         <!-- Each group is shown only when its data-shown-for option is selected -->
+         <div class="subgroup" id="studijuoja_group" data-shown-for="studijuoja" hidden>
+            <label for="stud_pakopa">Studijų pakopa</label>
+            <input id="stud_pakopa" name="stud_pakopa" type="text" />
+
+            <label for="stud_kursas">Kursas</label>
+            <input id="stud_kursas" name="stud_kursas" type="text" />
+
+            <label for="stud_istaiga">Įstaiga</label>
+            <input id="stud_istaiga" name="stud_istaiga" type="text" />
+
+            <label for="tiketini_baigimo_metai">Tikėtini baigimo metai</label>
+            <input
+               id="tiketini_baigimo_metai"
+               name="tiketini_baigimo_metai"
+               type="number"
+               min="1900"
+               max="2100"
+            />
+         </div>
+
+         <div class="subgroup" id="dirba_group" data-shown-for="dirba" hidden>
+            <label for="darbo_istaiga">Darbo įstaiga</label>
+            <input id="darbo_istaiga" name="darbo_istaiga" type="text" />
+
+            <label for="pareigos">Pareigos</label>
+            <input id="pareigos" name="pareigos" type="text" />
+         </div>
+
+         <div class="subgroup" id="nedirba_group" data-shown-for="nedirba" hidden>
+            <label for="nedarbo_priezastis">Nedarbo priežastis</label>
+            <input id="nedarbo_priezastis" name="nedarbo_priezastis" type="text" />
+         </div>
+
+         <div class="subgroup" id="atostogos_group" data-shown-for="atostogos" hidden>
+            <label for="atostogu_pabaiga">Atostogų pabaiga</label>
+            <input
+               id="atostogu_pabaiga"
+               name="atostogu_pabaiga"
+               type="text"
+               placeholder="yyyy/mm/dd"
+               pattern="^[0-9]{4}/[0-9]{2}/[0-9]{2}$"
+               title="Įveskite datą formatu yyyy/mm/dd"
+            />
+         </div>
+      </fieldset>
    </body>
 </html>

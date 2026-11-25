@@ -125,3 +125,24 @@ function updateSpouseFields() {
 
 maritalSelect.addEventListener("change", updateSpouseFields);
 updateSpouseFields();
+
+// PROFESINĖ PADĖTIS
+
+const jobStatusSelect = document.getElementById("prof_padetis");
+const jobStatusGroups = document.querySelectorAll(
+   "#prof_padetis ~ [data-shown-for]",
+);
+
+function updateJobStatusFields() {
+   for (const group of jobStatusGroups) {
+      const isSelected = group.dataset.shownFor === jobStatusSelect.value;
+
+      group.hidden = !isSelected;
+      for (const input of group.querySelectorAll("input")) {
+         input.disabled = !isSelected;
+      }
+   }
+}
+
+jobStatusSelect.addEventListener("change", updateJobStatusFields);
+updateJobStatusFields();
