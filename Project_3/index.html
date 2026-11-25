@@ -36,5 +36,33 @@
             />Moteris</label
          >
       </fieldset>
+
+      <fieldset>
+         <legend>Vardas / Pavardė</legend>
+         <label for="vardas">Vardas</label>
+         <input id="vardas" name="vardas" type="text" required />
+
+         <label for="antras_vardas">Antrasis vardas</label>
+         <input id="antras_vardas" name="antras_vardas" type="text" />
+
+         <label for="pavarde">Pavardė</label>
+         <input id="pavarde" name="pavarde" type="text" required />
+      </fieldset>
+
+      <fieldset>
+         <legend>Gimimo duomenys</legend>
+         <label for="gimimo_data">Gimimo data</label>
+         <input
+            id="gimimo_data"
+            name="gimimo_data"
+            type="text"
+            placeholder="yyyy/mm/dd"
+            pattern="^[0-9]{4}/[0-9]{2}/[0-9]{2}$"
+            title="Įveskite datą formatu yyyy/mm/dd"
+            required
+         />
+         <label for="asmens_kodas">Asmens kodas</label>
+         <input id="asmens_kodas" name="asmens_kodas" type="text" required />
+      </fieldset>
    </body>
 </html>
