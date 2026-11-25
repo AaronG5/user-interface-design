@@ -1,0 +1,19 @@
+/* Red asterisk on the label or legend of any required field */
+fieldset:has(:required) > legend::before,
+label:has(+ :required)::before {
+   content: "* ";
+   color: #d00;
+   margin-right: 0.25rem;
+   font-weight: 600;
+}
+
+.was-validated .invalid-required {
+   border: 2px solid #d00 !important;
+   box-shadow: 0 0 0 3px rgba(220, 20, 20, 0.06) !important;
+   border-radius: 4px;
+}
+
+fieldset.invalid-required {
+   border: 1px solid #d00;
+   padding: 0.5rem;
+}
