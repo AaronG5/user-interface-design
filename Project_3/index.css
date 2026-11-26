@@ -1,41 +1,109 @@
-/* Red asterisk on the label or legend of any required field */
+/*
+   Page layout only. All component styling (cards, fields, inputs, selects,
+   radios, progress bar) comes from Basecoat in vendor/basecoat.cdn.min.css.
+
+   Theme: shadcn preset b37bjtHCS (base color taupe, teal-blue primary).
+   Overrides Basecoat's default colours. :root is light mode, .dark is dark
+   mode (turned on by class="dark" on <html>).
+*/
+:root {
+   --background: oklch(1 0 0);
+   --foreground: oklch(0.147 0.004 49.3);
+   --card: oklch(1 0 0);
+   --card-foreground: oklch(0.147 0.004 49.3);
+   --popover: oklch(1 0 0);
+   --popover-foreground: oklch(0.147 0.004 49.3);
+   --primary: oklch(0.52 0.105 223.128);
+   --primary-foreground: oklch(0.984 0.019 200.873);
+   --secondary: oklch(0.967 0.001 286.375);
+   --secondary-foreground: oklch(0.21 0.006 285.885);
+   --muted: oklch(0.96 0.002 17.2);
+   --muted-foreground: oklch(0.547 0.021 43.1);
+   --accent: oklch(0.96 0.002 17.2);
+   --accent-foreground: oklch(0.214 0.009 43.1);
+   --destructive: oklch(0.577 0.245 27.325);
+   --border: oklch(0.922 0.005 34.3);
+   --input: oklch(0.922 0.005 34.3);
+   --ring: oklch(0.714 0.014 41.2);
+   --radius: 0.625rem;
+}
+
+.dark {
+   --background: oklch(0.147 0.004 49.3);
+   --foreground: oklch(0.986 0.002 67.8);
+   --card: oklch(0.214 0.009 43.1);
+   --card-foreground: oklch(0.986 0.002 67.8);
+   --popover: oklch(0.214 0.009 43.1);
+   --popover-foreground: oklch(0.986 0.002 67.8);
+   --primary: oklch(0.45 0.085 224.283);
+   --primary-foreground: oklch(0.984 0.019 200.873);
+   --secondary: oklch(0.274 0.006 286.033);
+   --secondary-foreground: oklch(0.985 0 0);
+   --muted: oklch(0.268 0.011 36.5);
+   --muted-foreground: oklch(0.714 0.014 41.2);
+   --accent: oklch(0.268 0.011 36.5);
+   --accent-foreground: oklch(0.986 0.002 67.8);
+   --destructive: oklch(0.704 0.191 22.216);
+   --border: oklch(1 0 0 / 10%);
+   --input: oklch(1 0 0 / 15%);
+   --ring: oklch(0.547 0.021 43.1);
+}
+
+main {
+   max-width: 40rem;
+   margin: 0 auto;
+   padding: 1.5rem 1rem 6rem;
+}
+
+form {
+   display: flex;
+   flex-direction: column;
+   gap: 1.5rem;
+}
+
 fieldset:has(:required) > legend::before,
 label:has(+ :required)::before {
    content: "* ";
-   color: #d00;
-   margin-right: 0.25rem;
-   font-weight: 600;
+   color: var(--destructive);
 }
 
-.was-validated .invalid-required {
-   border: 2px solid #d00 !important;
-   box-shadow: 0 0 0 3px rgba(220, 20, 20, 0.06) !important;
-   border-radius: 4px;
+label:has(+ :required)::before {
+   content: "*";
 }
 
-fieldset.invalid-required {
-   border: 1px solid #d00;
-   padding: 0.5rem;
+.form-actions {
+   display: flex;
+   justify-content: flex-end;
+   gap: 0.75rem;
 }
 
-/* Text fields: label on its own line, input below it */
-label[for],
-input:not([type="radio"], [type="checkbox"]),
-select {
-   display: block;
+:root {
+   --invalid-outline: oklch(0.68 0.2 38);
 }
 
-input:not([type="radio"], [type="checkbox"]),
-select {
-   width: 100%;
-   box-sizing: border-box;
-   margin-bottom: 0.75rem;
+input[aria-invalid="true"]:not([type="radio"]),
+select[aria-invalid="true"] {
+   outline: 2px solid var(--invalid-outline);
+   outline-offset: 2px;
 }
 
-fieldset {
-   margin-bottom: 1rem;
+[role="radiogroup"][aria-invalid="true"] {
+   outline: 2px solid var(--invalid-outline);
+   outline-offset: 6px;
+   border-radius: var(--radius);
 }
-fieldset legend {
-   font-size: large;
-   font-weight: bold;
+
+.progress-dock {
+   position: fixed;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   padding: 0.75rem 1rem;
+   border-top: 1px solid var(--border);
+   background: var(--background);
+}
+
+.progress-dock > .field {
+   max-width: 38rem;
+   margin: 0 auto;
 }

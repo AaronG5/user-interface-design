@@ -1,224 +1,453 @@
 <!doctype html>
-<html lang="lt">
+<html lang="lt" class="dark">
    <head>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <title>Anketos forma</title>
+      <!-- Basecoat 1.3.0 (shadcn/ui components as plain CSS) -->
+      <link rel="stylesheet" href="vendor/basecoat.cdn.min.css" />
       <link rel="stylesheet" href="index.css" />
       <script src="main.js" defer></script>
    </head>
 
    <body>
-      <form id="personal-data-form" action="#" method="post" enctype="multipart/form-data"></form>
-
-      <fieldset>
-         <legend>Lytis</legend>
-         <label class="option-label">
-            <input class="option-input" type="radio" name="lytis" value="vyras" required />
-            Vyras
-         </label>
-         <label class="option-label">
-            <input class="option-input" type="radio" name="lytis" value="moteris" required />
-            Moteris
-         </label>
-      </fieldset>
-
-      <fieldset>
-         <legend>Vardas / Pavardė</legend>
-         <label for="vardas">Vardas</label>
-         <input id="vardas" name="vardas" type="text" required />
-
-         <label for="antras_vardas">Antrasis vardas</label>
-         <input id="antras_vardas" name="antras_vardas" type="text" />
-
-         <label for="pavarde">Pavardė</label>
-         <input id="pavarde" name="pavarde" type="text" required />
-      </fieldset>
-
-      <fieldset>
-         <legend>Gimimo duomenys</legend>
-         <label for="gimimo_data">Gimimo data</label>
-         <input
-            id="gimimo_data"
-            name="gimimo_data"
-            type="text"
-            placeholder="yyyy/mm/dd"
-            pattern="^[0-9]{4}/[0-9]{2}/[0-9]{2}$"
-            title="Įveskite datą formatu yyyy/mm/dd"
-            required
-         />
-         <label for="asmens_kodas">Asmens kodas</label>
-         <input id="asmens_kodas" name="asmens_kodas" type="text" required />
-      </fieldset>
-
-      <fieldset>
-         <legend>Išsilavinimas</legend>
-         <label for="issilavinimas">Išsilavinimo lygis</label>
-         <select id="issilavinimas" name="issilavinimas" required>
-            <option value="" disabled selected>Pasirinkite...</option>
-            <option value="pagrindinis">Pagrindinis</option>
-            <option value="vidurinis">Vidurinis</option>
-            <option value="profesinis">Profesinis</option>
-            <option value="aukstasis_kolegijinis">Aukštasis - kolegijinis</option>
-            <option value="aukstasis_universitetinis">Aukštasis - universitetinis</option>
-         </select>
-
-         <div class="subgroup">
-            <label for="paskutine_istaiga">Paskutinė baigta mokslo / studijų įstaiga</label>
-            <input id="paskutine_istaiga" name="paskutine_istaiga" type="text" />
-
-            <label for="baigimo_metai">Baigimo metai</label>
-            <input id="baigimo_metai" name="baigimo_metai" type="number" min="1900" max="2050" />
-
-            <!-- Shown when the level gives a qualification -->
-            <div id="kvalifikacija_group" hidden>
-               <label for="kvalifikacija">Kvalifikacija (specialybės pavadinimas)</label>
-               <input id="kvalifikacija" name="kvalifikacija" type="text" disabled />
+      <main>
+         <form id="personal-data-form" action="#" method="post" enctype="multipart/form-data">
+            <div class="card">
+               <section>
+                  <fieldset class="fieldset">
+                     <legend data-variant="legend">Lytis</legend>
+                     <div role="radiogroup">
+                        <div role="group" class="field" data-orientation="horizontal">
+                           <input
+                              id="lytis_vyras"
+                              type="radio"
+                              name="lytis"
+                              value="vyras"
+                              required
+                           />
+                           <label for="lytis_vyras">Vyras</label>
+                        </div>
+                        <div role="group" class="field" data-orientation="horizontal">
+                           <input
+                              id="lytis_moteris"
+                              type="radio"
+                              name="lytis"
+                              value="moteris"
+                              required
+                           />
+                           <label for="lytis_moteris">Moteris</label>
+                        </div>
+                     </div>
+                  </fieldset>
+               </section>
             </div>
 
-            <!-- Shown and filled when the level gives a degree -->
-            <div id="mokslo_laipsnis_group" hidden>
-               <label for="mokslo_laipsnis">Mokslo laipsnis</label>
-               <select id="mokslo_laipsnis" name="mokslo_laipsnis" required disabled>
-                  <option value="" disabled selected>Pasirinkite...</option>
-               </select>
+            <div class="card">
+               <section>
+                  <fieldset class="fieldset">
+                     <legend data-variant="legend">Vardas / Pavardė</legend>
+                     <div role="group">
+                        <div role="group" class="field">
+                           <label for="vardas">Vardas</label>
+                           <input id="vardas" name="vardas" type="text" required />
+                        </div>
+                        <div role="group" class="field">
+                           <label for="antras_vardas">Antrasis vardas</label>
+                           <input id="antras_vardas" name="antras_vardas" type="text" />
+                        </div>
+                        <div role="group" class="field">
+                           <label for="pavarde">Pavardė</label>
+                           <input id="pavarde" name="pavarde" type="text" required />
+                        </div>
+                     </div>
+                  </fieldset>
+               </section>
+            </div>
+
+            <div class="card">
+               <section>
+                  <fieldset class="fieldset">
+                     <legend data-variant="legend">Gimimo duomenys</legend>
+                     <div role="group">
+                        <div role="group" class="field">
+                           <label for="asmens_kodas">Asmens kodas</label>
+                           <input
+                              id="asmens_kodas"
+                              name="asmens_kodas"
+                              type="text"
+                              inputmode="numeric"
+                              maxlength="11"
+                              pattern="[0-9]{11}"
+                              title="Asmens kodą sudaro 11 skaitmenų"
+                              aria-describedby="asmens_kodas_hint"
+                              required
+                           />
+                           <p id="asmens_kodas_hint">
+                              Gimimo data ir lytis bus užpildytos automatiškai.
+                           </p>
+                        </div>
+                        <div role="group" class="field">
+                           <label for="gimimo_data">Gimimo data</label>
+                           <input
+                              id="gimimo_data"
+                              name="gimimo_data"
+                              type="text"
+                              inputmode="numeric"
+                              maxlength="10"
+                              placeholder="yyyy/mm/dd"
+                              pattern="^[0-9]{4}/[0-9]{2}/[0-9]{2}$"
+                              title="Įveskite datą formatu yyyy/mm/dd"
+                              required
+                           />
+                        </div>
+                     </div>
+                  </fieldset>
+               </section>
+            </div>
+
+            <div class="card">
+               <section>
+                  <fieldset class="fieldset">
+                     <legend data-variant="legend">Išsilavinimas</legend>
+                     <div role="group">
+                        <div role="group" class="field">
+                           <label for="issilavinimas">Išsilavinimo lygis</label>
+                           <select id="issilavinimas" name="issilavinimas" required>
+                              <option value="" disabled selected>Pasirinkite...</option>
+                              <option value="pagrindinis">Pagrindinis</option>
+                              <option value="vidurinis">Vidurinis</option>
+                              <option value="profesinis">Profesinis</option>
+                              <option value="aukstasis_kolegijinis">Aukštasis - kolegijinis</option>
+                              <option value="aukstasis_universitetinis">
+                                 Aukštasis - universitetinis
+                              </option>
+                           </select>
+                        </div>
+                        <div role="group" class="fieldset" id="istaiga_group" hidden>
+                           <div role="group" class="field">
+                              <label for="paskutine_istaiga">
+                                 Paskutinė baigta mokslo / studijų įstaiga
+                              </label>
+                              <input
+                                 id="paskutine_istaiga"
+                                 name="paskutine_istaiga"
+                                 type="text"
+                                 disabled
+                              />
+                           </div>
+                           <div role="group" class="field">
+                              <label for="baigimo_metai">Baigimo metai</label>
+                              <input
+                                 id="baigimo_metai"
+                                 name="baigimo_metai"
+                                 type="number"
+                                 disabled
+                              />
+                           </div>
+                        </div>
+
+                        <!-- Shown when the level gives a qualification -->
+                        <div role="group" class="field" id="kvalifikacija_group" hidden>
+                           <label for="kvalifikacija">
+                              Kvalifikacija (specialybės pavadinimas)
+                           </label>
+                           <input id="kvalifikacija" name="kvalifikacija" type="text" disabled />
+                        </div>
+
+                        <!-- Shown and filled when the level gives a degree -->
+                        <div role="group" class="field" id="mokslo_laipsnis_group" hidden>
+                           <label for="mokslo_laipsnis">Mokslo laipsnis</label>
+                           <select id="mokslo_laipsnis" name="mokslo_laipsnis" required disabled>
+                              <option value="" disabled selected>Pasirinkite...</option>
+                           </select>
+                        </div>
+                     </div>
+                  </fieldset>
+               </section>
+            </div>
+
+            <div class="card">
+               <section>
+                  <fieldset class="fieldset">
+                     <legend data-variant="legend">Kontaktiniai duomenys</legend>
+                     <div role="group">
+                        <div role="group" class="field">
+                           <label for="telefonas">Telefono numeris</label>
+                           <input
+                              id="telefonas"
+                              name="telefonas"
+                              type="tel"
+                              placeholder="+370xxxxxxxx"
+                              required
+                           />
+                        </div>
+                        <div role="group" class="field">
+                           <label for="el_pastas">El. pašto adresas</label>
+                           <input
+                              id="el_pastas"
+                              name="el_pastas"
+                              type="email"
+                              placeholder="vardas@pavyzdys.lt"
+                              pattern="[^@]+@[^@]+\.[^@]+"
+                              title="El. pašto adresas turi turėti @ ir domeną su tašku, pvz. vardas@pavyzdys.lt"
+                              required
+                           />
+                        </div>
+                        <div role="group" class="field">
+                           <label for="adresas">Gyvenamoji vieta (adresas)</label>
+                           <input id="adresas" name="adresas" type="text" required />
+                        </div>
+                     </div>
+                  </fieldset>
+               </section>
+            </div>
+
+            <!-- Shown only when the person is 18 or older -->
+            <div class="card" id="vedybine_card" hidden>
+               <section>
+                  <fieldset class="fieldset" id="vedybine_fieldset" disabled>
+                     <legend data-variant="legend">Vedybinė padėtis</legend>
+                     <div role="group">
+                        <div role="group" class="field">
+                           <label for="vedybine">Vedybinė padėtis</label>
+                           <select id="vedybine" name="vedybine">
+                              <option value="" selected>Pasirinkite...</option>
+                              <option value="nevedes">Nevedęs / Netekėjusi</option>
+                              <option value="vedes">Vedęs / Ištekėjusi</option>
+                              <option value="issiskyres">Išsiskyręs(-usi)</option>
+                           </select>
+                        </div>
+
+                        <!-- Shown only when "Vedęs / Ištekėjusi" is selected -->
+                        <div role="group" class="fieldset" id="sutuoktinis_group" hidden>
+                           <div role="group" class="field">
+                              <label for="sutuoktinis_vardas">Sutuoktinis(-ė) vardas</label>
+                              <input
+                                 id="sutuoktinis_vardas"
+                                 name="sutuoktinis_vardas"
+                                 type="text"
+                                 disabled
+                              />
+                           </div>
+                           <div role="group" class="field">
+                              <label for="sutuoktinis_pavarde">Sutuoktinis(-ė) pavardė</label>
+                              <input
+                                 id="sutuoktinis_pavarde"
+                                 name="sutuoktinis_pavarde"
+                                 type="text"
+                                 disabled
+                              />
+                           </div>
+                        </div>
+                     </div>
+                  </fieldset>
+               </section>
+            </div>
+
+            <div class="card">
+               <section>
+                  <fieldset class="fieldset">
+                     <legend data-variant="legend">Profesinė padėtis</legend>
+                     <div role="group">
+                        <div role="group" class="field">
+                           <label for="prof_padetis">Profesinė padėtis</label>
+                           <select id="prof_padetis" name="prof_padetis" required>
+                              <option value="" disabled selected>Pasirinkite...</option>
+                              <option value="studijuoja">Studijuoja</option>
+                              <option value="dirba">Dirba</option>
+                              <option value="nedirba">Nedirba</option>
+                              <option value="atostogos">Motinystės / tėvystės atostogose</option>
+                           </select>
+                        </div>
+
+                        <!-- Each group is shown only when its data-shown-for option is selected -->
+                        <div
+                           role="group"
+                           class="fieldset"
+                           id="studijuoja_group"
+                           data-shown-for="studijuoja"
+                           hidden
+                        >
+                           <div role="group" class="field">
+                              <label for="stud_pakopa">Studijų pakopa</label>
+                              <select id="stud_pakopa" name="stud_pakopa">
+                                 <option value="" selected>Pasirinkite...</option>
+                                 <option value="profesinis_bakalauras">
+                                    Profesinis bakalauras
+                                 </option>
+                                 <option value="bakalauras">Bakalauras</option>
+                                 <option value="magistrantura">Magistrantūra</option>
+                                 <option value="vientisosios">Vientisosios studijos</option>
+                                 <option value="doktorantura">Doktorantūra</option>
+                              </select>
+                           </div>
+                           <div role="group" class="field">
+                              <label for="stud_kursas">Kursas</label>
+                              <input
+                                 id="stud_kursas"
+                                 name="stud_kursas"
+                                 type="number"
+                                 min="1"
+                                 max="6"
+                                 step="1"
+                              />
+                           </div>
+                           <div role="group" class="field">
+                              <label for="stud_istaiga">Įstaiga</label>
+                              <input id="stud_istaiga" name="stud_istaiga" type="text" />
+                           </div>
+                           <div role="group" class="field">
+                              <label for="tiketini_baigimo_metai">Tikėtini baigimo metai</label>
+                              <input
+                                 id="tiketini_baigimo_metai"
+                                 name="tiketini_baigimo_metai"
+                                 type="number"
+                              />
+                           </div>
+                        </div>
+
+                        <div
+                           role="group"
+                           class="fieldset"
+                           id="dirba_group"
+                           data-shown-for="dirba"
+                           hidden
+                        >
+                           <div role="group" class="field">
+                              <label for="darbo_istaiga">Darbo įstaiga</label>
+                              <input id="darbo_istaiga" name="darbo_istaiga" type="text" />
+                           </div>
+                           <div role="group" class="field">
+                              <label for="pareigos">Pareigos</label>
+                              <input id="pareigos" name="pareigos" type="text" />
+                           </div>
+                        </div>
+
+                        <div
+                           role="group"
+                           class="fieldset"
+                           id="nedirba_group"
+                           data-shown-for="nedirba"
+                           hidden
+                        >
+                           <div role="group" class="field">
+                              <label for="nedarbo_priezastis">Nedarbo priežastis</label>
+                              <input
+                                 id="nedarbo_priezastis"
+                                 name="nedarbo_priezastis"
+                                 type="text"
+                              />
+                           </div>
+                        </div>
+
+                        <div
+                           role="group"
+                           class="fieldset"
+                           id="atostogos_group"
+                           data-shown-for="atostogos"
+                           hidden
+                        >
+                           <div role="group" class="field">
+                              <label for="atostogu_pabaiga">Atostogų pabaiga</label>
+                              <input
+                                 id="atostogu_pabaiga"
+                                 name="atostogu_pabaiga"
+                                 type="text"
+                                 placeholder="yyyy/mm/dd"
+                                 pattern="^[0-9]{4}/[0-9]{2}/[0-9]{2}$"
+                                 title="Įveskite datą formatu yyyy/mm/dd"
+                              />
+                           </div>
+                        </div>
+                     </div>
+                  </fieldset>
+               </section>
+            </div>
+
+            <div class="card">
+               <section>
+                  <fieldset class="fieldset">
+                     <legend data-variant="legend">Darbo patirtis</legend>
+                     <div role="radiogroup">
+                        <div role="group" class="field" data-orientation="horizontal">
+                           <input
+                              id="patirtis_taip"
+                              type="radio"
+                              name="turi_darbo_patirties"
+                              value="taip"
+                              required
+                           />
+                           <label for="patirtis_taip">Turiu darbo patirties</label>
+                        </div>
+                        <div role="group" class="field" data-orientation="horizontal">
+                           <input
+                              id="patirtis_ne"
+                              type="radio"
+                              name="turi_darbo_patirties"
+                              value="ne"
+                           />
+                           <label for="patirtis_ne">Neturiu darbo patirties</label>
+                        </div>
+                     </div>
+
+                     <!-- Shown only when "Turiu darbo patirties" is selected -->
+                     <div role="group" id="darbo_patirtis_group" hidden>
+                        <div role="group" class="field">
+                           <label for="darbo_patirtis">Darbo patirtis (metai)</label>
+                           <input id="darbo_patirtis" name="darbo_patirtis" type="number" min="0" />
+                        </div>
+                        <div role="group" class="field">
+                           <label for="darbo_sritis">Darbo sritis</label>
+                           <select id="darbo_sritis" name="darbo_sritis">
+                              <option value="" selected>Pasirinkite...</option>
+                              <option value="teise">Teisė</option>
+                              <option value="viesasis_sektorius">Viešasis sektorius</option>
+                              <option value="sveikatos_apsauga">Sveikatos apsauga</option>
+                              <option value="farmacija">Farmacija</option>
+                              <option value="pramone">Pramonė / gamyba</option>
+                              <option value="it">IT</option>
+                              <option value="prekyba">Prekyba</option>
+                              <option value="krasto_apsauga">Krašto apsauga</option>
+                              <option value="vidaus_reikalai">Vidaus reikalų sistema</option>
+                              <option value="klientu_aptarnavimas">
+                                 Klientų aptarnavimas ir paslaugos
+                              </option>
+                              <option value="transportas">Transportas</option>
+                              <option value="kultura_pramogos">Kultūra ir pramogos</option>
+                              <option value="svietimas_studijos">Švietimas / studijos</option>
+                           </select>
+                        </div>
+                     </div>
+                  </fieldset>
+               </section>
+            </div>
+
+            <div class="form-actions">
+               <button type="reset" class="btn" data-variant="outline">Išvalyti</button>
+               <button type="submit" class="btn">Pateikti</button>
+            </div>
+         </form>
+      </main>
+
+      <div class="progress-dock">
+         <div role="group" class="field">
+            <label id="progress_label">
+               Užpildyta:
+               <output id="progress_text">0 %</output>
+            </label>
+            <div
+               class="progress"
+               id="progress_bar"
+               role="progressbar"
+               aria-labelledby="progress_label"
+               aria-valuenow="0"
+               aria-valuemin="0"
+               aria-valuemax="100"
+            >
+               <span id="progress_fill" style="width: 0%"></span>
             </div>
          </div>
-      </fieldset>
-
-      <fieldset>
-         <legend>Kontaktiniai duomenys</legend>
-         <label for="telefonas">Telefono numeris</label>
-         <input id="telefonas" name="telefonas" type="tel" placeholder="+370xxxxxxxx" required />
-
-         <label for="el_pastas">El. pašto adresas</label>
-         <input id="el_pastas" name="el_pastas" type="email" required />
-
-         <label for="adresas">Gyvenamoji vieta (adresas)</label>
-         <input id="adresas" name="adresas" type="text" required />
-      </fieldset>
-
-      <!-- Shown only when the person is 18 or older -->
-      <fieldset id="vedybine_fieldset" hidden disabled>
-         <legend>Vedybinė padėtis</legend>
-         <label for="vedybine">Vedybinė padėtis</label>
-         <select id="vedybine" name="vedybine">
-            <option value="" selected>Pasirinkite...</option>
-            <option value="nevedes">Nevedęs / Netekėjusi</option>
-            <option value="vedes">Vedęs / Ištekėjusi</option>
-            <option value="issiskyres">Išsiskyręs(-usi)</option>
-         </select>
-
-         <!-- Shown only when "Vedęs / Ištekėjusi" is selected -->
-         <div class="subgroup" id="sutuoktinis_group" hidden>
-            <label for="sutuoktinis_vardas">Sutuoktinis(-ė) vardas</label>
-            <input id="sutuoktinis_vardas" name="sutuoktinis_vardas" type="text" disabled />
-
-            <label for="sutuoktinis_pavarde">Sutuoktinis(-ė) pavardė</label>
-            <input id="sutuoktinis_pavarde" name="sutuoktinis_pavarde" type="text" disabled />
-         </div>
-      </fieldset>
-
-      <fieldset>
-         <legend>Profesinė padėtis</legend>
-         <label for="prof_padetis">Profesinė padėtis</label>
-         <select id="prof_padetis" name="prof_padetis" required>
-            <option value="" disabled selected>Pasirinkite...</option>
-            <option value="studijuoja">Studijuoja</option>
-            <option value="dirba">Dirba</option>
-            <option value="nedirba">Nedirba</option>
-            <option value="atostogos">Motinystės / tėvystės atostogose</option>
-         </select>
-
-         <!-- Each group is shown only when its data-shown-for option is selected -->
-         <div class="subgroup" id="studijuoja_group" data-shown-for="studijuoja" hidden>
-            <label for="stud_pakopa">Studijų pakopa</label>
-            <input id="stud_pakopa" name="stud_pakopa" type="text" />
-
-            <label for="stud_kursas">Kursas</label>
-            <input id="stud_kursas" name="stud_kursas" type="text" />
-
-            <label for="stud_istaiga">Įstaiga</label>
-            <input id="stud_istaiga" name="stud_istaiga" type="text" />
-
-            <label for="tiketini_baigimo_metai">Tikėtini baigimo metai</label>
-            <input
-               id="tiketini_baigimo_metai"
-               name="tiketini_baigimo_metai"
-               type="number"
-               min="1900"
-               max="2100"
-            />
-         </div>
-
-         <div class="subgroup" id="dirba_group" data-shown-for="dirba" hidden>
-            <label for="darbo_istaiga">Darbo įstaiga</label>
-            <input id="darbo_istaiga" name="darbo_istaiga" type="text" />
-
-            <label for="pareigos">Pareigos</label>
-            <input id="pareigos" name="pareigos" type="text" />
-         </div>
-
-         <div class="subgroup" id="nedirba_group" data-shown-for="nedirba" hidden>
-            <label for="nedarbo_priezastis">Nedarbo priežastis</label>
-            <input id="nedarbo_priezastis" name="nedarbo_priezastis" type="text" />
-         </div>
-
-         <div class="subgroup" id="atostogos_group" data-shown-for="atostogos" hidden>
-            <label for="atostogu_pabaiga">Atostogų pabaiga</label>
-            <input
-               id="atostogu_pabaiga"
-               name="atostogu_pabaiga"
-               type="text"
-               placeholder="yyyy/mm/dd"
-               pattern="^[0-9]{4}/[0-9]{2}/[0-9]{2}$"
-               title="Įveskite datą formatu yyyy/mm/dd"
-            />
-         </div>
-      </fieldset>
-
-      <fieldset>
-         <legend>Darbo patirtis</legend>
-         <label class="option-label">
-            <input
-               class="option-input"
-               type="radio"
-               name="turi_darbo_patirties"
-               value="taip"
-               required
-            />
-            <span class="dot"></span>
-            Turiu darbo patirties
-         </label>
-         <label class="option-label">
-            <input class="option-input" type="radio" name="turi_darbo_patirties" value="ne" />
-            <span class="dot"></span>
-            Neturiu darbo patirties
-         </label>
-
-         <!-- Shown only when "Turiu darbo patirties" is selected -->
-         <div class="subgroup" id="darbo_patirtis_group" hidden>
-            <label for="darbo_patirtis">Darbo patirtis (metai)</label>
-            <input id="darbo_patirtis" name="darbo_patirtis" type="number" min="0" />
-
-            <label for="darbo_sritis">Darbo sritis</label>
-            <select id="darbo_sritis" name="darbo_sritis">
-               <option value="" selected>Pasirinkite...</option>
-               <option value="teise">Teisė</option>
-               <option value="viesasis_sektorius">Viešasis sektorius</option>
-               <option value="sveikatos_apsauga">Sveikatos apsauga</option>
-               <option value="farmacija">Farmacija</option>
-               <option value="pramone">Pramonė / gamyba</option>
-               <option value="it">IT</option>
-               <option value="prekyba">Prekyba</option>
-               <option value="krasto_apsauga">Krašto apsauga</option>
-               <option value="vidaus_reikalai">Vidaus reikalų sistema</option>
-               <option value="klientu_aptarnavimas">Klientų aptarnavimas ir paslaugos</option>
-               <option value="transportas">Transportas</option>
-               <option value="kultura_pramogos">Kultūra ir pramogos</option>
-               <option value="svietimas_studijos">Švietimas / studijos</option>
-            </select>
-         </div>
-      </fieldset>
+      </div>
    </body>
 </html>
